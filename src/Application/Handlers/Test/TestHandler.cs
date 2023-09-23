@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using CabinetManagement.Application.Common.Exceptions;
 using CabinetManagement.Application.Common.Interfaces;
 using CabinetManagement.Application.IO.Test;
@@ -14,8 +15,10 @@ namespace CabinetManagement.Application.Handlers.Test;
 public class TestHandler : IRequestHandler<TestRequest, TestResponse>
 {
     public IApplicationDbContext _dbContext { get; set; }
-    public TestHandler(IApplicationDbContext dbContext)
+    public IMapper _mapper { get; set; }
+    public TestHandler(IApplicationDbContext dbContext,IMapper mapper)
     {
+        _mapper = mapper;
         _dbContext = dbContext;
     }
     public async Task<TestResponse> Handle(TestRequest request, CancellationToken cancellationToken)
