@@ -1,4 +1,5 @@
-﻿using CabinetManagement.Application.Common.Exceptions;
+﻿using System.Net;
+using CabinetManagement.Application.Common.Exceptions;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -37,7 +38,19 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
 
         context.ExceptionHandled = true;
     }
-
+    private void HandleUnknownException(ExceptionContext context)
+    {
+        var details = new ProblemDetails()
+        {
+            Type = "Unknown",
+            Detail = "Intenal Error"
+        };
+        context.Result = new ObjectResult(details)
+        {
+            StatusCode = 500
+        };
+        context.ExceptionHandled = true;
+    }
     public override void OnException(ExceptionContext context)
     {
         HandleException(context);
@@ -53,12 +66,13 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
             _exceptionHandlers[type].Invoke(context);
             return;
         }
-
         if (!context.ModelState.IsValid)
         {
             HandleInvalidModelStateException(context);
             return;
         }
+        HandleUnknownException(context);
+        return;
     }
 
     private void HandleValidationException(ExceptionContext context)

@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 namespace CabinetManagement.Application.IO.Test;
 public class TestResponse
 {
-    public string Message { get; set; }
+    public string? Message { get; set; }
 }
