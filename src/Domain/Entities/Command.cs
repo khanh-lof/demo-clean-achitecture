@@ -10,4 +10,8 @@ public partial class Command
     public string? CommandType { get; set; }
 
     public DateTime Time { get; set; }
+
+    public Guid ControllerId { get; set; }
+
+    public virtual Controller Controller { get; set; } = null!;
 }

@@ -12,4 +12,6 @@ public partial class BoxType
     public decimal Height { get; set; }
 
     public decimal Depth { get; set; }
+
+    public virtual ICollection<Box> Boxes { get; set; } = new List<Box>();
 }

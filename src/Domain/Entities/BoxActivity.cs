@@ -10,4 +10,8 @@ public partial class BoxActivity
     public string Action { get; set; } = null!;
 
     public DateTime Time { get; set; }
+
+    public Guid BoxId { get; set; }
+
+    public virtual Box Box { get; set; } = null!;
 }

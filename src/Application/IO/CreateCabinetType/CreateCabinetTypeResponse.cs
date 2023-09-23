@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CabinetManagement.Application.IO.Test;
-public class TestResponse
+namespace CabinetManagement.Application.IO.CreateCabinetType;
+public class CreateCabinetTypeResponse
 {
     public string? Message { get; set; }
 }

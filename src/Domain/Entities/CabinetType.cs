@@ -10,4 +10,6 @@ public partial class CabinetType
     public string? TypeName { get; set; }
 
     public string? Description { get; set; }
+
+    public virtual ICollection<Cabinet> Cabinets { get; set; } = new List<Cabinet>();
 }

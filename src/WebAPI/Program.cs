@@ -7,6 +7,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 // Add services to the container.
 builder.Services.AddApplicationServices();
+builder.Configuration.AddUserSecrets<Program>();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddControllers();
 

@@ -1,7 +1,6 @@
 ﻿
 using CabinetManagement.Application.Common.Interfaces;
 using CabinetManagement.Infrastructure;
-using CabinetManagement.Infrastructure.Entities;
 using CabinetManagement.Infrastructure.Identity;
 using CabinetManagement.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -17,11 +16,10 @@ public static class ConfigureServices
     {
 
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("ConnectionStrings:CMS"),
+            options.UseSqlServer(configuration.GetConnectionString("DBConnection"),
                 builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
-
 
         services.AddAuthentication();
 
